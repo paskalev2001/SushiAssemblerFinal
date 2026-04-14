@@ -1,22 +1,117 @@
-html {
-  font-size: 14px;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+:root {
+  --wood-dark: #2b1f18;
+  --wood-mid:  #403028;
+  --wood-light:#8a5f3b;
+  --panel:     #f6efe6; /* linen */
+  --panel-text:#2b1f18;
+  --nav-red:   #b71c1c;
+  --nav-red-dark: #8f1414;
+  --accent:    #d4af37;
+  --muted:     #7f6b5f;
+  --radius:    10px;
+  --max-width: 1100px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* Base */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Noto Sans JP', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  color: var(--panel-text);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Wood textured background simulated with gradients and grain lines */
 body {
-  margin-bottom: 60px;
+  background-color: var(--wood-mid);
+  background-image:
+    linear-gradient(180deg, rgba(43,31,24,1), rgba(64,48,40,1) 35%, rgba(138,95,59,0.6) 100%),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 18px);
+  background-size: auto, auto;
+  background-attachment: fixed;
+  margin-bottom: 80px; /* keep space for footer */
 }
+
+/* Container for pages: cloth/linen panel over wood */
+.container {
+  max-width: var(--max-width);
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(246,239,230,0.98), rgba(244,236,225,0.98));
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Navbar: rich red sash */
+.site-navbar {
+  background: linear-gradient(180deg, var(--nav-red), var(--nav-red-dark));
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.site-navbar .navbar-brand, .site-navbar .nav-link {
+  color: #fff !important;
+  font-weight: 700;
+}
+.site-navbar .nav-link:hover, .site-navbar .nav-link:focus {
+  color: var(--accent) !important;
+}
+.site-navbar .navbar-toggler {
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Ensure any Bootstrap .text-dark or bg-white doesn't override theme inside panel */
+.panel, .panel * {
+  color: var(--panel-text) !important;
+}
+.bg-white { background-color: transparent !important; }
+.text-dark { color: inherit !important; }
+
+/* Typography */
+.site-title {
+  font-family: 'Noto Serif JP', 'Times New Roman', serif;
+  color: #fff;
+}
+
+/* Tables */
+.table thead th {
+  color: rgba(255,255,255,0.95);
+}
+.table tbody td { color: var(--panel-text); }
+
+/* Food card */
+.card, .food-row {
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(252,250,246,0.95));
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.food-image { width:110px; height:80px; object-fit:cover; border-radius:6px; }
+.food-price { color: var(--nav-red); font-weight:800; }
+
+/* Forms */
+.form-control { background: #fff; color: var(--panel-text); border-radius:6px; }
+
+/* Footer */
+.site-footer {
+  position: fixed; left:0; right:0; bottom:0; height:56px;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.5));
+  color: rgba(255,255,255,0.8);
+}
+
+/* Small screens */
+@media (max-width: 720px) {
+  .food-image { width:86px; height:64px; }
+  .panel { padding: 14px; }
+}
+
+/* Accessibility focus */
+a:focus, button:focus, input:focus { outline: 3px solid rgba(212,175,55,0.12); outline-offset:2px; }
