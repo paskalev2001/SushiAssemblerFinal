@@ -9,6 +9,8 @@
 
         public string ImagePath { get; set; }
 
+        public double Price { get; set; }
+
         public Food()
         {
 
