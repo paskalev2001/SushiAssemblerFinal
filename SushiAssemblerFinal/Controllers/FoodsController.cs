@@ -25,6 +25,18 @@ namespace SushiAssemblerFinal.Controllers
             return View(await _context.Food.ToListAsync());
         }
 
+        //GET: Foods/ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+
+        //POST: Foods/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(String SearchFood)
+        {
+            return View("Index", await _context.Food.Where(j => j.Description.Contains(SearchFood) || j.Name.Contains(SearchFood)).ToListAsync());
+        }
+
         // GET: Foods/Details/5
         public async Task<IActionResult> Details(int? id)
         {
