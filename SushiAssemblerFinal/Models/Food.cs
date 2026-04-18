@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiAssemblerFinal.Models
@@ -10,11 +11,11 @@ namespace SushiAssemblerFinal.Models
         [Required, StringLength(100)]
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public int Calories { get; set; }
 
-        public string ImagePath { get; set; }
+        public string? ImagePath { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(8,2)")]
