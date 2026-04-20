@@ -15,6 +15,15 @@
     console.log('DebugForm submit intercepted for', form.action);
 
     try {
+      // prevent double-submit by marking the form and disabling submit buttons
+      if (form.dataset.__submitting === '1') {
+        console.log('Form already submitting, ignoring duplicate submit');
+        return;
+      }
+      form.dataset.__submitting = '1';
+      var submitButtons = Array.from(form.querySelectorAll('button[type="submit"], input[type="submit"]'));
+      submitButtons.forEach(function(b){ b.disabled = true; });
+
       var formData = new FormData(form);
       // read antiforgery token from form
       var tokenInput = form.querySelector('input[name="__RequestVerificationToken"]');
@@ -34,9 +43,10 @@
 
       console.log('Fetch response', response.status, response.type, 'redirected=', response.redirected);
       var contentType = response.headers.get('content-type') || '';
+      var json = null;
       if (contentType.indexOf('application/json') !== -1) {
-        var json = await response.json();
         try {
+          json = await response.json();
           console.log('JSON response:', JSON.stringify(json, null, 2));
         } catch (e) {
           console.log('JSON response (raw):', json);
