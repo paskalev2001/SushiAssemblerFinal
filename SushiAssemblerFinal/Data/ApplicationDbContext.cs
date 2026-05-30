@@ -10,7 +10,8 @@ namespace SushiAssemblerFinal.Data
             : base(options)
         {
         }
-        public DbSet<SushiAssemblerFinal.Models.Food> Food { get; set; } = default!;
-        public DbSet<DeliveryAddress> DeliveryAddresses { get; set; } = default!;
+
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
