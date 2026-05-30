@@ -1,0 +1,39 @@
+﻿@model SushiAssemblerFinal.ViewModels.OrderStatusViewModel
+
+@{
+    ViewData["Title"] = "Смяна на статус";
+}
+
+<h1>Смяна на статус</h1>
+
+<form asp-action="EditStatus" method="post">
+    <input type="hidden" asp-for="OrderId" />
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label"></label>
+
+        <select asp-for="Status" class="form-select">
+            @foreach (var status in Model.AvailableStatuses)
+            {
+                <option value="@status">@status</option>
+            }
+        </select>
+
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Запази
+    </button>
+
+    <a asp-controller="AdminOrders"
+       asp-action="Details"
+       asp-route-id="@Model.OrderId"
+       class="btn btn-secondary">
+        Отказ
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

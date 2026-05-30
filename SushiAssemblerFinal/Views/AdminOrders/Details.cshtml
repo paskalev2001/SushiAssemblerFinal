@@ -1,0 +1,59 @@
+﻿@model SushiAssemblerFinal.Models.Order
+
+@{
+    ViewData["Title"] = "Админ - Детайли за поръчка";
+}
+
+<h1>Поръчка #@Model.Id</h1>
+
+<div class="mb-3">
+    <p><strong>Потребител:</strong> @Model.User?.Email</p>
+    <p><strong>Дата:</strong> @Model.OrderDate.ToString("dd.MM.yyyy HH:mm")</p>
+    <p><strong>Статус:</strong> @Model.Status</p>
+    <p><strong>Адрес:</strong> @Model.DeliveryAddress</p>
+    <p><strong>Телефон:</strong> @Model.PhoneNumber</p>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Notes))
+    {
+        <p><strong>Бележки:</strong> @Model.Notes</p>
+    }
+</div>
+
+<h3>Продукти</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Продукт</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Общо</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.UnitPrice лв.</td>
+                <td>@item.Quantity</td>
+                <td>@item.Total лв.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Крайна сума: @Model.TotalPrice лв.</h3>
+
+<a asp-controller="AdminOrders"
+   asp-action="EditStatus"
+   asp-route-id="@Model.Id"
+   class="btn btn-warning">
+    Смени статус
+</a>
+
+<a asp-controller="AdminOrders"
+   asp-action="Index"
+   class="btn btn-secondary">
+    Назад
+</a>
