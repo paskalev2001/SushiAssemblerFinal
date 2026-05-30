@@ -21,6 +21,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 await SeedData.InitializeAsync(app.Services);
@@ -39,6 +41,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();
