@@ -1,0 +1,49 @@
+﻿@model List<SushiAssemblerFinal.Models.Order>
+
+@{
+    ViewData["Title"] = "Моите поръчки";
+}
+
+<h1>Моите поръчки</h1>
+
+@if (!Model.Any())
+{
+    <p>Все още нямате направени поръчки.</p>
+
+    <a asp-controller="Menu" asp-action="Index" class="btn btn-primary">
+        Към менюто
+    </a>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Дата</th>
+                <th>Статус</th>
+                <th>Сума</th>
+                <th>Детайли</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>#@order.Id</td>
+                    <td>@order.OrderDate.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@order.Status</td>
+                    <td>@order.TotalPrice лв.</td>
+                    <td>
+                        <a asp-controller="Order"
+                           asp-action="Details"
+                           asp-route-id="@order.Id"
+                           class="btn btn-sm btn-primary">
+                            Виж
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

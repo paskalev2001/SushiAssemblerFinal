@@ -25,14 +25,23 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Foods" asp-action="Index">Foods</a>
+                            <a class="nav-link text-dark" asp-controller="Menu" asp-action="Index">
+                                Меню
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Foods" asp-action="ShowSearchForm">Search</a>
+                            <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">
+                                Количка
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="DeliveryAddresses" asp-action="Index">Delivery Addresses</a>
+                            <a class="nav-link text-dark" asp-controller="Order" asp-action="MyOrders">
+                                Моите поръчки
+                            </a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
