@@ -272,7 +272,7 @@ namespace SushiAssemblerFinal.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DeliveryAddresses");
+                    b.ToTable("DeliveryAddresses", (string)null);
                 });
 
             modelBuilder.Entity("SushiAssemblerFinal.Models.Food", b =>
@@ -302,7 +302,7 @@ namespace SushiAssemblerFinal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Food");
+                    b.ToTable("Food", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
