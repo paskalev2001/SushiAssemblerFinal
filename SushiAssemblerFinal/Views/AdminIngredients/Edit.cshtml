@@ -1,0 +1,52 @@
+﻿@model SushiAssemblerFinal.Models.Ingredient
+
+@{
+    ViewData["Title"] = "Редакция на съставка";
+}
+
+<h1>Редакция на съставка</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Име</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Type" class="form-label">Тип</label>
+        <select asp-for="Type" class="form-select">
+            <option value="Rice">Rice</option>
+            <option value="Fish">Fish</option>
+            <option value="Vegetable">Vegetable</option>
+            <option value="Sauce">Sauce</option>
+            <option value="Extra">Extra</option>
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Цена</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsAvailable" class="form-check-input" />
+        <label asp-for="IsAvailable" class="form-check-label">Налична съставка</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Запази промените
+    </button>
+
+    <a asp-controller="AdminIngredients" asp-action="Index" class="btn btn-secondary">
+        Назад
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
