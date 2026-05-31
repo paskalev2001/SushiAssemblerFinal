@@ -10,9 +10,13 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm site-navbar mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm site-navbar mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand site-title" asp-area="" asp-controller="Home" asp-action="Index">SushiAssemblerFinal</a>
+
+                <a class="navbar-brand site-title" asp-area="" asp-controller="Home" asp-action="Index">
+                    Sushi Assembler
+                </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,13 +31,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Menu" asp-action="Index">
+                            <a class="nav-link " asp-controller="Menu" asp-action="Index">
                                 Меню
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark"
+                            <a class="nav-link "
                                asp-controller="SushiBuilder"
                                asp-action="Index">
                                 Създай суши
@@ -41,13 +45,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">
+                            <a class="nav-link " asp-controller="Cart" asp-action="Index">
                                 Количка
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Order" asp-action="MyOrders">
+                            <a class="nav-link " asp-controller="Order" asp-action="MyOrders">
                                 Моите поръчки
                             </a>
                         </li>
@@ -55,7 +59,7 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark"
+                                <a class="nav-link "
                                    asp-controller="AdminOrders"
                                    asp-action="Index">
                                     Админ поръчки
@@ -64,7 +68,7 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark"
+                                <a class="nav-link "
                                    asp-controller="AdminProducts"
                                    asp-action="Index">
                                     Админ продукти
@@ -72,7 +76,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark"
+                                <a class="nav-link "
                                    asp-controller="AdminIngredients"
                                    asp-action="Index">
                                     Админ съставки
@@ -80,7 +84,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark"
+                                <a class="nav-link "
                                    asp-controller="AdminCategories"
                                    asp-action="Index">
                                     Админ категории
@@ -95,18 +99,15 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            <div class="panel">
-                @RenderBody()
-            </div>
+        <main role="main" class="panel">
+            @RenderBody()
         </main>
     </div>
 
     <footer class="site-footer">
-        <div class="container">
-            &copy; 2026 - SushiAssemblerFinal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        <span>&copy; @DateTime.Now.Year - Sushi Assembler Final</span>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
