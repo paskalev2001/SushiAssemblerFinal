@@ -49,6 +49,36 @@ namespace SushiAssemblerFinal.Data
                 await userManager.AddToRoleAsync(adminUser, "Admin");
             }
 
+            if (!await context.Ingredients.AnyAsync())
+            {
+                context.Ingredients.AddRange(
+                    new Ingredient { Name = "Бял ориз", Type = "Rice", Price = 2.00m },
+                    new Ingredient { Name = "Кафяв ориз", Type = "Rice", Price = 2.50m },
+                    new Ingredient { Name = "Ориз с нори", Type = "Rice", Price = 3.00m },
+
+                    new Ingredient { Name = "Сьомга", Type = "Fish", Price = 4.50m },
+                    new Ingredient { Name = "Риба тон", Type = "Fish", Price = 5.00m },
+                    new Ingredient { Name = "Скариди", Type = "Fish", Price = 4.80m },
+                    new Ingredient { Name = "Сурими", Type = "Fish", Price = 3.20m },
+
+                    new Ingredient { Name = "Авокадо", Type = "Vegetable", Price = 1.50m },
+                    new Ingredient { Name = "Краставица", Type = "Vegetable", Price = 1.00m },
+                    new Ingredient { Name = "Морков", Type = "Vegetable", Price = 0.80m },
+                    new Ingredient { Name = "Зелен лук", Type = "Vegetable", Price = 0.70m },
+
+                    new Ingredient { Name = "Соев сос", Type = "Sauce", Price = 0.50m },
+                    new Ingredient { Name = "Терияки сос", Type = "Sauce", Price = 0.80m },
+                    new Ingredient { Name = "Спайси майо", Type = "Sauce", Price = 1.00m },
+
+                    new Ingredient { Name = "Сусам", Type = "Extra", Price = 0.50m },
+                    new Ingredient { Name = "Уасаби", Type = "Extra", Price = 0.70m },
+                    new Ingredient { Name = "Маринован джинджифил", Type = "Extra", Price = 0.70m },
+                    new Ingredient { Name = "Крема сирене", Type = "Extra", Price = 1.20m }
+                );
+
+                await context.SaveChangesAsync();
+            }
+
             if (await context.Products.AnyAsync())
             {
                 return;

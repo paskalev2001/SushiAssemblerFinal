@@ -37,7 +37,9 @@ namespace SushiAssemblerFinal.Controllers
             var cart = HttpContext.Session.GetObject<List<CartItem>>(CartSessionKey)
                 ?? new List<CartItem>();
 
-            var existingItem = cart.FirstOrDefault(x => x.ProductId == id);
+            var cartItemId = $"product-{product.Id}";
+
+            var existingItem = cart.FirstOrDefault(x => x.Id == cartItemId);
 
             if (existingItem != null)
             {
@@ -47,10 +49,13 @@ namespace SushiAssemblerFinal.Controllers
             {
                 cart.Add(new CartItem
                 {
+                    Id = cartItemId,
                     ProductId = product.Id,
                     ProductName = product.Name,
+                    Details = product.Description,
                     Price = product.Price,
-                    Quantity = 1
+                    Quantity = 1,
+                    IsCustom = false
                 });
             }
 
@@ -59,12 +64,12 @@ namespace SushiAssemblerFinal.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult RemoveFromCart(int id)
+        public IActionResult RemoveFromCart(string id)
         {
             var cart = HttpContext.Session.GetObject<List<CartItem>>(CartSessionKey)
                 ?? new List<CartItem>();
 
-            var item = cart.FirstOrDefault(x => x.ProductId == id);
+            var item = cart.FirstOrDefault(x => x.Id == id);
 
             if (item != null)
             {
@@ -76,12 +81,12 @@ namespace SushiAssemblerFinal.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult IncreaseQuantity(int id)
+        public IActionResult IncreaseQuantity(string id)
         {
             var cart = HttpContext.Session.GetObject<List<CartItem>>(CartSessionKey)
                 ?? new List<CartItem>();
 
-            var item = cart.FirstOrDefault(x => x.ProductId == id);
+            var item = cart.FirstOrDefault(x => x.Id == id);
 
             if (item != null)
             {
@@ -93,12 +98,12 @@ namespace SushiAssemblerFinal.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult DecreaseQuantity(int id)
+        public IActionResult DecreaseQuantity(string id)
         {
             var cart = HttpContext.Session.GetObject<List<CartItem>>(CartSessionKey)
                 ?? new List<CartItem>();
 
-            var item = cart.FirstOrDefault(x => x.ProductId == id);
+            var item = cart.FirstOrDefault(x => x.Id == id);
 
             if (item != null)
             {

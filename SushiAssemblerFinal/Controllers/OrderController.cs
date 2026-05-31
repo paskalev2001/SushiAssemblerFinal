@@ -71,6 +71,8 @@ namespace SushiAssemblerFinal.Controllers
                 {
                     ProductId = item.ProductId,
                     ProductName = item.ProductName,
+                    ItemDetails = item.Details,
+                    IsCustom = item.IsCustom,
                     UnitPrice = item.Price,
                     Quantity = item.Quantity
                 }).ToList()

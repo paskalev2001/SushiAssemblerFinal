@@ -24,6 +24,7 @@
     <thead>
         <tr>
             <th>Продукт</th>
+            <th>Описание</th>
             <th>Цена</th>
             <th>Количество</th>
             <th>Общо</th>
@@ -33,7 +34,15 @@
         @foreach (var item in Model.OrderItems)
         {
             <tr>
-                <td>@item.ProductName</td>
+                <td>
+                    @item.ProductName
+
+                    @if (item.IsCustom)
+                    {
+                        <span class="badge bg-success">Custom</span>
+                    }
+                </td>
+                <td>@item.ItemDetails</td>
                 <td>@item.UnitPrice лв.</td>
                 <td>@item.Quantity</td>
                 <td>@item.Total лв.</td>

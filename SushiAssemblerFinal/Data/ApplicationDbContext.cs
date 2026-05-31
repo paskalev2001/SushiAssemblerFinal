@@ -16,5 +16,7 @@ namespace SushiAssemblerFinal.Data
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+
+        public DbSet<Ingredient> Ingredients { get; set; }
     }
 }

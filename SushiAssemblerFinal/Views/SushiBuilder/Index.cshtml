@@ -1,0 +1,116 @@
+﻿@model SushiAssemblerFinal.ViewModels.SushiBuilderViewModel
+
+@{
+    ViewData["Title"] = "Създай суши";
+}
+
+<h1>Създай собствено суши</h1>
+
+<form asp-controller="SushiBuilder" asp-action="AddToCart" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="RiceId" class="form-label"></label>
+        <select asp-for="RiceId" class="form-select">
+            <option value="">-- Избери ориз --</option>
+
+            @foreach (var rice in Model.RiceOptions)
+            {
+                <option value="@rice.Id">
+                    @rice.Name - @rice.Price лв.
+                </option>
+            }
+        </select>
+        <span asp-validation-for="RiceId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FishId" class="form-label"></label>
+        <select asp-for="FishId" class="form-select">
+            <option value="">-- Избери риба / основна съставка --</option>
+
+            @foreach (var fish in Model.FishOptions)
+            {
+                <option value="@fish.Id">
+                    @fish.Name - @fish.Price лв.
+                </option>
+            }
+        </select>
+        <span asp-validation-for="FishId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <h4>Зеленчуци</h4>
+
+        @foreach (var vegetable in Model.VegetableOptions)
+        {
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="SelectedVegetableIds"
+                       value="@vegetable.Id"
+                       id="veg-@vegetable.Id" />
+
+                <label class="form-check-label" for="veg-@vegetable.Id">
+                    @vegetable.Name - @vegetable.Price лв.
+                </label>
+            </div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <h4>Сосове</h4>
+
+        @foreach (var sauce in Model.SauceOptions)
+        {
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="SelectedSauceIds"
+                       value="@sauce.Id"
+                       id="sauce-@sauce.Id" />
+
+                <label class="form-check-label" for="sauce-@sauce.Id">
+                    @sauce.Name - @sauce.Price лв.
+                </label>
+            </div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <h4>Добавки</h4>
+
+        @foreach (var extra in Model.ExtraOptions)
+        {
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="SelectedExtraIds"
+                       value="@extra.Id"
+                       id="extra-@extra.Id" />
+
+                <label class="form-check-label" for="extra-@extra.Id">
+                    @extra.Name - @extra.Price лв.
+                </label>
+            </div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quantity" class="form-label"></label>
+        <input asp-for="Quantity" class="form-control" min="1" max="20" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Добави в количката
+    </button>
+
+    <a asp-controller="Menu" asp-action="Index" class="btn btn-secondary">
+        Назад към менюто
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
