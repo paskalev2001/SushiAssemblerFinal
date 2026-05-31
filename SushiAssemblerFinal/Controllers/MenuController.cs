@@ -1,9 +1,7 @@
-﻿using SushiAssemblerFinal.Data;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
+using SushiAssemblerFinal.Data;
+using SushiAssemblerFinal.ViewModels;
 
 namespace SushiAssemblerFinal.Controllers
 {
@@ -16,15 +14,41 @@ namespace SushiAssemblerFinal.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? search, int? categoryId)
         {
-            var products = await _context.Products
+            var productsQuery = _context.Products
                 .Include(p => p.Category)
                 .Where(p => p.IsAvailable)
-                .ToListAsync();
+                .AsQueryable();
 
-            return View(products);
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                productsQuery = productsQuery.Where(p =>
+                    p.Name.Contains(search) ||
+                    p.Description.Contains(search));
+            }
+
+            if (categoryId.HasValue)
+            {
+                productsQuery = productsQuery.Where(p => p.CategoryId == categoryId.Value);
+            }
+
+            var model = new MenuViewModel
+            {
+                Products = await productsQuery
+                    .OrderBy(p => p.Category!.Name)
+                    .ThenBy(p => p.Name)
+                    .ToListAsync(),
+
+                Categories = await _context.Categories
+                    .OrderBy(c => c.Name)
+                    .ToListAsync(),
+
+                Search = search,
+                CategoryId = categoryId
+            };
+
+            return View(model);
         }
     }
-
 }
