@@ -8,6 +8,7 @@ namespace SushiAssemblerFinal.Models
 
         [Required(ErrorMessage = "Името на категорията е задължително.")]
         [StringLength(50, ErrorMessage = "Името не може да бъде по-дълго от 50 символа.")]
+        [Display(Name = "Име")]
         public string Name { get; set; } = string.Empty;
 
         public ICollection<Product> Products { get; set; } = new List<Product>();
