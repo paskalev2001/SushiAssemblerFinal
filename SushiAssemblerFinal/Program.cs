@@ -24,6 +24,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession();
 
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 await SeedData.InitializeAsync(app.Services);
