@@ -1,0 +1,44 @@
+﻿@model SushiAssemblerFinal.Models.Category
+
+@{
+    ViewData["Title"] = "Изтриване на категория";
+}
+
+<h1>Изтриване на категория</h1>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="alert alert-danger">
+    Сигурен ли си, че искаш да изтриеш тази категория?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Име</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">Брой продукти</dt>
+    <dd class="col-sm-9">@Model.Products.Count</dd>
+</dl>
+
+@if (Model.Products.Any())
+{
+    <div class="alert alert-warning">
+        Тази категория има продукти и не може да бъде изтрита.
+        Първо премести или изтрий продуктите от нея.
+    </div>
+}
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    @if (!Model.Products.Any())
+    {
+        <button type="submit" class="btn btn-danger">
+            Изтрий
+        </button>
+    }
+
+    <a asp-controller="AdminCategories" asp-action="Index" class="btn btn-secondary">
+        Отказ
+    </a>
+</form>
