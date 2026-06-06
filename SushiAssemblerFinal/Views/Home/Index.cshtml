@@ -6,5 +6,19 @@
     <h1 class="display-4">The Sushi Assembler Restaurant</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-    <p>Buy the best sushi in town. You can also build your own.</p>
+    <h2>Най-хубавото суши във вашия град. Опциите са безброй!<h2/>
+
+    <div class="mt-4 d-flex flex-wrap gap-3">
+        <a asp-controller="Menu"
+            asp-action="Index"
+            class="btn btn-dark btn-lg px-5 py-3 fw-bold hero-main-button">
+            Вземи си храна сега!
+        </a>
+
+        <a asp-controller="Menu"
+            asp-action="Index"
+            class="btn btn-lg px-5 py-3 hero-main-button">
+            Създай суши
+        </a>
+    </div>
 </div>

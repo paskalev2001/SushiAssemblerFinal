@@ -381,3 +381,18 @@ textarea:focus {
         margin-bottom: 90px;
     }
 }
+
+.hero-main-button {
+    background: var(--nav-red);
+    color: #fff !important;
+    border: 1px solid var(--nav-red-dark);
+    font-weight: 800;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+}
+
+.hero-main-button:hover {
+    background: var(--nav-red-dark);
+    color: #fff !important;
+    border-color: var(--nav-red-dark);
+    transform: translateY(-2px);
+}
