@@ -43,15 +43,15 @@
                     }
                 </td>
                 <td>@item.ItemDetails</td>
-                <td>@item.UnitPrice лв.</td>
+                <td>@item.UnitPrice EUR</td>
                 <td>@item.Quantity</td>
-                <td>@item.Total лв.</td>
+                <td>@item.Total EUR</td>
             </tr>
         }
     </tbody>
 </table>
 
-<h3>Крайна сума: @Model.TotalPrice лв.</h3>
+<h3>Крайна сума: @Model.TotalPrice EUR</h3>
 
 <a asp-controller="Order" asp-action="MyOrders" class="btn btn-primary">
     Моите поръчки

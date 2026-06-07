@@ -17,7 +17,7 @@
             @foreach (var rice in Model.RiceOptions)
             {
                 <option value="@rice.Id">
-                    @rice.Name - @rice.Price лв.
+                    @rice.Name - @rice.Price EUR
                 </option>
             }
         </select>
@@ -32,7 +32,7 @@
             @foreach (var fish in Model.FishOptions)
             {
                 <option value="@fish.Id">
-                    @fish.Name - @fish.Price лв.
+                    @fish.Name - @fish.Price EUR
                 </option>
             }
         </select>
@@ -52,7 +52,7 @@
                        id="veg-@vegetable.Id" />
 
                 <label class="form-check-label" for="veg-@vegetable.Id">
-                    @vegetable.Name - @vegetable.Price лв.
+                    @vegetable.Name - @vegetable.Price EUR
                 </label>
             </div>
         }
@@ -71,7 +71,7 @@
                        id="sauce-@sauce.Id" />
 
                 <label class="form-check-label" for="sauce-@sauce.Id">
-                    @sauce.Name - @sauce.Price лв.
+                    @sauce.Name - @sauce.Price EUR
                 </label>
             </div>
         }
@@ -90,7 +90,7 @@
                        id="extra-@extra.Id" />
 
                 <label class="form-check-label" for="extra-@extra.Id">
-                    @extra.Name - @extra.Price лв.
+                    @extra.Name - @extra.Price EUR
                 </label>
             </div>
         }

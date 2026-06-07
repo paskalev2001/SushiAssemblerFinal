@@ -46,9 +46,9 @@ else
                     </td>
 
                     <td>@item.Details</td>
-                    <td>@item.Price лв.</td>
+                    <td>@item.Price EUR</td>
                     <td>@item.Quantity</td>
-                    <td>@item.Total лв.</td>
+                    <td>@item.Total EUR</td>
                     <td>
                         <a asp-controller="Cart"
                            asp-action="DecreaseQuantity"
@@ -76,7 +76,7 @@ else
         </tbody>
     </table>
 
-    <h3>Крайна сума: @total лв.</h3>
+    <h3>Крайна сума: @total EUR</h3>
 
     <a asp-controller="Menu" asp-action="Index" class="btn btn-primary">
         Продължи пазаруването

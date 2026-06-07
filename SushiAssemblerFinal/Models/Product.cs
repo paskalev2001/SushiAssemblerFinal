@@ -18,7 +18,7 @@ namespace SushiAssemblerFinal.Models
         public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Цената е задължителна.")]
-        [Range(0.01, 1000, ErrorMessage = "Цената трябва да бъде между 0.01 и 1000 лв.")]
+        [Range(0.01, 1000, ErrorMessage = "Цената трябва да бъде между 0.01 и 1000 EUR")]
         [Column(TypeName = "decimal(18,2)")]
         [Display(Name = "Цена")]
         public decimal Price { get; set; }
