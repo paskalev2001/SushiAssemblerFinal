@@ -396,3 +396,7 @@ textarea:focus {
     border-color: var(--nav-red-dark);
     transform: translateY(-2px);
 }
+
+.gcomsg-test {
+    color:antiquewhite;
+}
